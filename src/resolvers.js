@@ -17,11 +17,24 @@ const books = [
     },
 ];
 
+const authors = [
+    {
+        name: 'Ms J.K. Rowling',
+    },
+    {
+        name: 'Mr Stephen King'
+    },
+    {
+        name: 'S.C.'
+    }
+]
+
 // Resolvers define the technique for fetching the types in the
 // schema.  We'll retrieve books from the "books" array above.
 const resolvers = {
     Query: {
-        books: () => books,
+        getBooks: () => books,
+        getAuthors: () => authors,
     },
 };
 
