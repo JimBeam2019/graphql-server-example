@@ -36,6 +36,7 @@ const resolvers = {
         getBooks: () => books,
         getAuthors: () => authors,
     },
+    
 };
 
 module.exports = {
