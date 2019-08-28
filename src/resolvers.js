@@ -1,3 +1,4 @@
+import AchModel from './ach/AchModel';
 
 // This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
@@ -35,6 +36,11 @@ const resolvers = {
     Query: {
         getBooks: () => books,
         getAuthors: () => authors,
+        createACH: () => {
+            AchModel.createAchFile();
+
+            return 1;
+        }
     },
     
 };
