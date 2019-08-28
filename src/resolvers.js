@@ -25,7 +25,7 @@ const authors = [
         name: 'Mr Stephen King'
     },
     {
-        name: 'S.C.'
+        name: 'Ms S.C.'
     }
 ]
 
@@ -36,6 +36,7 @@ const resolvers = {
         getBooks: () => books,
         getAuthors: () => authors,
     },
+    
 };
 
 module.exports = {
