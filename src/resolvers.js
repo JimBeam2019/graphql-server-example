@@ -1,3 +1,5 @@
+import AchModel from './ach/AchModel';
+import Crypto from './aws/crypto';
 
 // This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
@@ -35,6 +37,23 @@ const resolvers = {
     Query: {
         getBooks: () => books,
         getAuthors: () => authors,
+        createACH: () => {
+            AchModel.createAchFile();
+
+            return 1;
+        },
+        awsCrypto: () => {
+            const crypto = new Crypto();
+            crypto.encryptText('asdf');
+
+            return 1;
+        },
+        kmsCrypto: async () => {
+            const crypto = new Crypto();
+            await crypto.KmsEncryptTest('asdf');
+
+            return 1;
+        }
     },
     
 };

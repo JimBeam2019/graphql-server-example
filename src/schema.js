@@ -19,6 +19,9 @@ const typeDefs = gql`
     type Query {
         getBooks: [Book],
         getAuthors: [Author],
+        createACH: Int,
+        awsCrypto: Int,
+        kmsCrypto: Int
     }
 `;
 
