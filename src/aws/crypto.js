@@ -59,7 +59,7 @@ class Crypto {
 
             return new Promise((resolve, reject) => {
                 const params = {
-                    KeyId: '965d2884-b2cd-4d79-8773-6b1f57133300',
+                    KeyId: '965d2884-b2cd-4d79-8773-6b1f57133300', // The identifier of the CMK to use for encryption. You can use the key ID or Amazon Resource Name (ARN) of the CMK, or the name or ARN of an alias that refers to the CMK.
                     Plaintext: clearText
                 };
 
@@ -67,6 +67,7 @@ class Crypto {
                     if (err) {
                         reject(err);
                     } else {
+                        console.log('Ciper text: ', data.CiphertextBlob);
                         resolve(data.CiphertextBlob);
                     }
                 })
