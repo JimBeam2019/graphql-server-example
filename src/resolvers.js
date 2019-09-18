@@ -50,9 +50,14 @@ const resolvers = {
         },
         kmsCrypto: async () => {
             const crypto = new Crypto();
-            await crypto.KmsEncryptTest('asdf');
+            const cipherText = await crypto.KmsEncryptText('asdf');
 
-            return 1;
+            console.log('Ciper text: ', cipherText);
+
+            const plainText = await crypto.KmsDecryptText(cipherText);
+
+
+            return { cipherText, plainText };
         }
     },
     
