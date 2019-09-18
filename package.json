@@ -13,16 +13,19 @@
   "license": "ISC",
   "dependencies": {
     "@ach/ach": "^1.1.0",
-    "apollo-server": "^2.5.0",
-    "graphql": "^14.3.0",
+    "@aws-crypto/client-node": "0.1.0-preview.4",
+    "apollo-server": "^2.9.0",
+    "aws-sdk": "^2.530.0",
+    "graphql": "^14.5.3",
+    "moment": "^2.24.0",
     "nach2": "^0.5.1",
     "nacha": "0.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/node": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "eslint": "^5.16.0",
     "nodemon": "^1.19.1"
   }
