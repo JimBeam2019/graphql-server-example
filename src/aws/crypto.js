@@ -14,6 +14,14 @@ class Crypto {
             purpose: 'simple demonstration app',
             origin: 'us-west-2'
         };
+
+        this.awsToken = {
+            accessKeyId: '----', //credentials for your IAM user
+            secretAccessKey: '----', //credentials for your IAM user
+            region: '----'
+        };
+
+        this.KeyId = '----'; // The identifier of the CMK to use for encryption. You can use the key ID or Amazon Resource Name (ARN) of the CMK, or the name or ARN of an alias that refers to the CMK.
     }
 
     /**
@@ -49,29 +57,66 @@ class Crypto {
      * 
      * @param {string} clearText 
      */
-    KmsEncryptTest(clearText) {
+    KmsEncryptText(clearText) {
         try {
-            const kms = new aws.KMS({
-                accessKeyId: 'AKCVBTRNOSMLTIA7RPQQ', //credentials for your IAM user
-                secretAccessKey: 'lJQtdIfH/Cup9AyaaHV8h2NnR/eKFIsZea5Vn0k', //credentials for your IAM user
-                region: 'ap-southeast-1'
-            });
+            const kms = new aws.KMS(this.awsToken);
 
             return new Promise((resolve, reject) => {
+                console.log('>>>>> Ciper text: ', clearText);
+
                 const params = {
-                    KeyId: '965d2884-b2cd-4d79-8773-6b1f57133300', // The identifier of the CMK to use for encryption. You can use the key ID or Amazon Resource Name (ARN) of the CMK, or the name or ARN of an alias that refers to the CMK.
-                    Plaintext: clearText
+                    KeyId: this.KeyId,
+                    Plaintext: Buffer.from(clearText, 'utf-8')
                 };
 
                 kms.encrypt(params, (err, data) => {
                     if (err) {
                         reject(err);
                     } else {
-                        console.log('Ciper text: ', data.CiphertextBlob);
-                        resolve(data.CiphertextBlob);
+                        const { CiphertextBlob } = data;
+
+                        console.log('CiphertextBlob >>>> ', CiphertextBlob);
+
+                        const cipherText = CiphertextBlob.toString('base64');
+
+                        resolve(cipherText);
                     }
-                })
-            })
+                });
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    /**
+     * 
+     * @param {string} cipherText 
+     */
+    KmsDecryptText(cipherText) {
+        try {
+            const kms = new aws.KMS(this.awsToken);
+
+            return new Promise((resolve, reject) => {
+                console.log('>>>>> Ciper text: ', cipherText);
+
+                const encryptedText = Buffer.from(cipherText, 'base64');
+
+                const params = {
+                    CiphertextBlob: encryptedText
+                };
+
+                kms.decrypt(params, (err, data) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        const { Plaintext } = data;
+
+                        const clearText = Plaintext.toString('utf-8');
+
+                        resolve(clearText);
+                    }
+                });
+            });
         } catch (error) {
             console.error(error);
         }

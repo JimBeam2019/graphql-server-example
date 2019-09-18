@@ -14,6 +14,11 @@ const typeDefs = gql`
         name: String
     }
 
+    type KmsCipherText {
+        cipherText: String
+        plainText: String
+    }
+
     # The "Query" type is the root of all GraphQL queries.
     # (A "Mutation" type will be covered later on.)
     type Query {
@@ -21,7 +26,7 @@ const typeDefs = gql`
         getAuthors: [Author],
         createACH: Int,
         awsCrypto: Int,
-        kmsCrypto: Int
+        kmsCrypto: KmsCipherText
     }
 `;
 
