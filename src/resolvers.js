@@ -48,16 +48,31 @@ const resolvers = {
 
             return 1;
         },
-        kmsCrypto: async () => {
+        kmsCrypto: async (_, args) => {
+
+            const { text } = args;
             const crypto = new Crypto();
-            const cipherText = await crypto.KmsEncryptText('asdf');
+            const cipherText = await crypto.KmsEncryptText(text);
 
             console.log('Ciper text: ', cipherText);
 
             const plainText = await crypto.KmsDecryptText(cipherText);
 
-
             return { cipherText, plainText };
+        },
+        aesEncrypt: async (_, args) => {
+
+            const { text } = args;
+            const crypto = new Crypto();
+            console.log('Plain text: ', text);
+            
+            const cipherText = await crypto.aesEncryptText(text);
+            console.log('AES Encrypted text: ', cipherText);
+
+            const decipherText = await crypto.aesDecryptText(cipherText);
+            console.log('AES Decrypted text: ', decipherText);
+
+            return { cipherText, decipherText }; 
         }
     },
     
