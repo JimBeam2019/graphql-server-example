@@ -75,7 +75,7 @@ class Crypto {
             const kms = new aws.KMS(this.awsToken);
 
             return new Promise((resolve, reject) => {
-                console.log('>>>>> Ciper text: ', clearText);
+                console.log('>>>>> Plain text: ', clearText);
 
                 const params = {
                     KeyId: this.KeyId,
