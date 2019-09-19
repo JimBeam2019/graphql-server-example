@@ -32,6 +32,9 @@ class Crypto {
     }
 
     /**
+     * AWS Encryption SDK
+     * 
+     * https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/js-examples.html
      * 
      * @param {string} clearText 
      */
@@ -61,6 +64,9 @@ class Crypto {
     }
 
     /**
+     * AWS KMS encrypt
+     * 
+     * https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/KMS.html#encrypt-property
      * 
      * @param {string} clearText 
      */
@@ -96,6 +102,9 @@ class Crypto {
     }
 
     /**
+     * AWS KMS decrypt
+     * 
+     * https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/KMS.html#decrypt-property
      * 
      * @param {string} cipherText 
      */
@@ -130,6 +139,9 @@ class Crypto {
     }
 
     /**
+     * Node.js Crypto createCipheriv with aes-256-cbc
+     * 
+     * https://nodejs.org/dist/latest-v10.x/docs/api/crypto.html#crypto_crypto_createcipheriv_algorithm_key_iv_options
      * 
      * @param {string} plainText 
      */
@@ -153,6 +165,13 @@ class Crypto {
         
     }
 
+    /**
+     * Node.js Crypto createDecipheriv with aes-256-cbc
+     * 
+     * https://nodejs.org/dist/latest-v10.x/docs/api/crypto.html#crypto_crypto_createdecipheriv_algorithm_key_iv_options
+     * 
+     * @param {string} cipherText 
+     */
     aesDecryptText(cipherText) {
 
         return new Promise((resolve, reject) => {
